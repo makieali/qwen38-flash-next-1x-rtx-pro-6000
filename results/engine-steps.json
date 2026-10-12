@@ -1,0 +1,78 @@
+{
+  "description": "Decode speed per engine step, same card and same model (Qwen3.8 Flash-Next, Heretic uncensored weights). Streaming requests, unique prompts, warm engine.",
+  "hardware": {
+    "gpu": "1x NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 96 GB (97,887 MiB), SM120, PCIe Gen4 x16 (board limit)",
+    "cpu": "AMD Ryzen Threadripper 3990X, 64 cores",
+    "ram": "256 GB DDR4-2400",
+    "os": "Ubuntu 26.04 LTS, kernel 7.0, NVIDIA driver 610.57 (open)",
+    "power_limit_w": 600
+  },
+  "units": "output tokens per second",
+  "steps": [
+    {
+      "step": "llama.cpp on Windows 11 (GGUF Q5_K_M, 28/48 expert layers on GPU, 20 in RAM)",
+      "date": "2026-10-06",
+      "chat_1_user": 45,
+      "code_1_user": 45,
+      "users_4_total": 45,
+      "prefill_tok_s": 380,
+      "note": "approximate (~45-48)"
+    },
+    {
+      "step": "vLLM 0.31 + our NVFP4 (FlashInfer b12x, dynamic mode, MTP k=3)",
+      "date": "2026-10-07",
+      "chat_1_user": 127,
+      "code_1_user": 195,
+      "users_4_total": 353,
+      "prefill_tok_s": 14000,
+      "kv_tokens": 296000
+    },
+    {
+      "step": "SGLang Pennyroyal v2.5.3 + our NVFP4 (FlashInfer CUTLASS MoE, FP8 KV, NEXTN MTP 3 + FR-Spec)",
+      "date": "2026-10-08",
+      "chat_1_user": 150,
+      "code_1_user": [
+        215,
+        240
+      ],
+      "users_4_total": [
+        395,
+        432
+      ],
+      "prefill_tok_s": 14450,
+      "kv_tokens": 565120
+    },
+    {
+      "step": "SGLang + online MXFP8 for the remaining 16-bit layers (production)",
+      "date": "2026-10-08",
+      "chat_1_user": [
+        179,
+        188
+      ],
+      "code_1_user": [
+        281,
+        287
+      ],
+      "users_4_total": 481,
+      "prefill_tok_s": [
+        13500,
+        14500
+      ],
+      "kv_tokens": 825472
+    }
+  ],
+  "reported_by_others": [
+    {
+      "source": "SGLang Pennyroyal (jpezzulli/sglang-rtxpro6000), 1x RTX PRO 6000",
+      "chat_1_user": [
+        171,
+        207
+      ]
+    },
+    {
+      "source": "SirTificate/qwen38-flash-next-2x-rtx6000-sm120, vLLM, 2x RTX PRO 6000",
+      "chat_1_user": 161,
+      "users_32_total": 1056
+    }
+  ]
+}

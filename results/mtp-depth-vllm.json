@@ -1,0 +1,36 @@
+{
+  "description": "MTP speculative depth on vLLM 0.31 (tok/s chat / code / 4-user total; mean acceptance length).",
+  "date": "2026-10-07",
+  "runs": [
+    {
+      "k": 2,
+      "chat": 128,
+      "code": 170,
+      "users_4_total": 350,
+      "acceptance_length": 2.37
+    },
+    {
+      "k": 3,
+      "chat": 126.5,
+      "code": 201,
+      "users_4_total": 355,
+      "acceptance_length": 2.15,
+      "kept": true
+    },
+    {
+      "k": 4,
+      "chat": 118,
+      "code": 189,
+      "users_4_total": 321,
+      "acceptance_length": 3.1
+    }
+  ],
+  "sglang_production": {
+    "speculative": "NEXTN, num-steps 3, draft tokens 4, FR-Spec 64k token map",
+    "observed_accept_length": [
+      2.06,
+      2.13
+    ],
+    "date": "2026-10-12"
+  }
+}

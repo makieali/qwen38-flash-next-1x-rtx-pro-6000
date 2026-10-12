@@ -1,0 +1,21 @@
+{
+  "description": "Our NVFP4 (experts only) built from the BF16 Heretic weights, checked against RadixArk's NVFP4 release.",
+  "date": "2026-10-07",
+  "source_model": "trohrbaugh/Qwen3.8-Flash-Next-heretic (BF16, 360 GB, 53 files, SHA-256 verified)",
+  "quantized": "routed experts gate/up/down -> NVFP4 (group 16), RadixArk calibrated input_scale, gate/up share weight_scale_2",
+  "kept_16_bit": [
+    "attention (GDN + QSA)",
+    "shared experts",
+    "router",
+    "embeddings",
+    "lm_head",
+    "vision tower",
+    "MTP head",
+    "PLE n-gram table"
+  ],
+  "relative_error_vs_bf16": {
+    "ours": 0.00893,
+    "radixark": 0.00892
+  },
+  "size_gb": 186
+}

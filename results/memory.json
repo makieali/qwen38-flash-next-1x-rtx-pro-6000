@@ -1,0 +1,34 @@
+{
+  "description": "Where everything lives (production build). Measured with nvidia-smi, SGLang /metrics and /proc.",
+  "hardware": {
+    "gpu": "1x NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 96 GB (97,887 MiB), SM120, PCIe Gen4 x16 (board limit)",
+    "cpu": "AMD Ryzen Threadripper 3990X, 64 cores",
+    "ram": "256 GB DDR4-2400",
+    "os": "Ubuntu 26.04 LTS, kernel 7.0, NVIDIA driver 610.57 (open)",
+    "power_limit_w": 600
+  },
+  "date": "2026-10-12",
+  "vram": {
+    "experts_nvfp4_gb": 68,
+    "other_weights_fp8_online_mxfp8_gb": "about 8-16 (16-bit on disk, converted at load)",
+    "kv_cache": {
+      "dtype": "fp8_e4m3",
+      "tokens_at_mem_fraction_0.95": 825472,
+      "tokens_at_mem_fraction_0.90": 471680,
+      "gb_at_0.90": 5.74,
+      "why_small": "only 12 of 48 layers use full attention with a KV cache; 36 are Gated DeltaNet layers with a fixed-size state"
+    },
+    "state_cache": "mamba/GDN state slots, --max-mamba-cache-size 24 (5 slots per request)",
+    "total_used_mib": [
+      87444,
+      90704
+    ],
+    "total_mib": 97887
+  },
+  "dram": {
+    "ple_ngram_table_gb": 102,
+    "placement": "pinned system RAM (--ple-offload-embedding)",
+    "engine_process_rss_gb": 99
+  },
+  "checkpoint_on_disk_gb": 186
+}

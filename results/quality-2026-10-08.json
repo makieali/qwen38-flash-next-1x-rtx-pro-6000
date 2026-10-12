@@ -1,0 +1,26 @@
+{
+  "description": "Spot checks on SGLang + MXFP8 (bench/eval_models.py, bench/tooltest.py).",
+  "date": "2026-10-08",
+  "refusals": {
+    "asked": 5,
+    "refused": 0
+  },
+  "coding_own_tests_executed": [
+    "10/10 passed",
+    "9/9 passed"
+  ],
+  "long_answer": {
+    "tokens": 2934,
+    "seconds": 13.5,
+    "repetition": "none"
+  },
+  "vision": "correct description",
+  "tool_calls_two_step": {
+    "presence_1.5_thinking_off": {
+      "vllm": "10/20",
+      "sglang": "15/40"
+    },
+    "presence_0_to_1_thinking_off": "about 26-27/40",
+    "thinking_on_for_tool_requests": "40/40 on both engines"
+  }
+}

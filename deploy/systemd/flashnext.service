@@ -1,0 +1,21 @@
+[Unit]
+Conflicts=flashnext-sglang.service
+Description=Qwen3.8-Flash-Next uncensored NVFP4 (vLLM, 127.0.0.1:8080)
+After=network-online.target
+
+[Service]
+KillMode=control-group
+TimeoutStopSec=60
+ExecStopPost=/usr/bin/pkill -9 -f VLLM::
+User=dev
+WorkingDirectory=/srv/ai/vllm
+ExecStart=/srv/ai/vllm/serve-flashnext.sh
+StandardOutput=append:/srv/ai/vllm/serve.log
+StandardError=append:/srv/ai/vllm/serve.log
+LimitMEMLOCK=infinity
+Restart=on-failure
+RestartSec=20
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

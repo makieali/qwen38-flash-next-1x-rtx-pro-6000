@@ -1,0 +1,20 @@
+
+[Unit]
+Description=Qwen3.8-Flash-Next uncensored NVFP4 on SGLang Pennyroyal (127.0.0.1:8080)
+After=network-online.target
+Conflicts=flashnext.service
+
+[Service]
+User=dev
+ExecStart=/srv/ai/sglang/serve-sglang.sh true
+StandardOutput=append:/srv/ai/sglang/serve.log
+StandardError=append:/srv/ai/sglang/serve.log
+LimitMEMLOCK=infinity
+KillMode=control-group
+TimeoutStopSec=60
+Restart=on-failure
+RestartSec=30
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

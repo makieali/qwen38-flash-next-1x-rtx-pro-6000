@@ -1,0 +1,13 @@
+[Unit]
+Description=GPU control (fans, power limit, safety override) on 127.0.0.1:8766
+After=nvidia-persistenced.service
+
+[Service]
+ExecStartPre=/usr/bin/nvidia-smi -pm 1
+ExecStart=/srv/ai/sglang/pennyroyal/.venv/bin/python /srv/ai/tools/gpuctl.py
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

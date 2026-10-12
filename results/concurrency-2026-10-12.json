@@ -1,0 +1,75 @@
+{
+  "description": "Concurrency on the production SGLang + MXFP8 build. 500-word story prompts with a unique UUID, max_tokens 700, streaming. bench/concurrency.py",
+  "hardware": {
+    "gpu": "1x NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 96 GB (97,887 MiB), SM120, PCIe Gen4 x16 (board limit)",
+    "cpu": "AMD Ryzen Threadripper 3990X, 64 cores",
+    "ram": "256 GB DDR4-2400",
+    "os": "Ubuntu 26.04 LTS, kernel 7.0, NVIDIA driver 610.57 (open)",
+    "power_limit_w": 600
+  },
+  "date": "2026-10-12",
+  "config": {
+    "mem_fraction_static": 0.9,
+    "max_running_requests": 8,
+    "max_mamba_cache_size": 24
+  },
+  "engine_note": "SGLang log: 'max_running_requests is capped to 4 by the mamba state cache (max_mamba_cache_size=24, 5 state slots per request)'",
+  "runs": [
+    {
+      "users": 1,
+      "total_tok_s": 175,
+      "per_user_tok_s": 192,
+      "ttft_s": 0.37,
+      "running_peak": 1,
+      "queued_peak": 0
+    },
+    {
+      "users": 4,
+      "total_tok_s": 210,
+      "per_user_tok_s": [
+        129,
+        137
+      ],
+      "ttft_s": 7.87,
+      "running_peak": 4,
+      "queued_peak": 0,
+      "note": "first run after restart: one-time CUDA-graph warm-up, excluded"
+    },
+    {
+      "users": 4,
+      "total_tok_s": [
+        461,
+        476
+      ],
+      "per_user_tok_s": [
+        124,
+        142
+      ],
+      "ttft_s": [
+        0.48,
+        0.49
+      ],
+      "running_peak": 4,
+      "queued_peak": 0,
+      "note": "warm, two runs"
+    },
+    {
+      "users": 8,
+      "total_tok_s": [
+        449,
+        459
+      ],
+      "per_user_tok_s": [
+        111,
+        134
+      ],
+      "ttft_s": [
+        0.48,
+        7.08
+      ],
+      "running_peak": 4,
+      "queued_peak": 4,
+      "note": "warm; 4 requests queue because of the state-cache cap"
+    }
+  ]
+}
